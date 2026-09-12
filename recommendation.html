@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Moodify - Recommendation</title>
+
+    <link rel="stylesheet" href="css/recommendation.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="logo">
+            
+            Moodify
+        </div>
+
+        <div class="nav-menu">
+            <a href="home.html">Home</a>
+            <a href="recommendation.html" class="active">
+                Recommendation
+            </a>
+
+            <div class="search-box">
+                🔍
+                <input
+                    type="text"
+                    placeholder="Search song..."
+                >
+            </div>
+
+            <div class="profile">
+                👤
+                <span>User</span>
+                ▼
+            </div>
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN -->
+    <main class="container">
+
+        <!-- MOOD HEADER -->
+        <section class="mood-header">
+
+            <div class="mood-icon">
+                😊
+            </div>
+
+            <div>
+                <p class="small-title">
+                    YOUR MOOD
+                </p>
+
+                <h1>
+                    Your mood: <span id="moodName">Happy</span>
+                </h1>
+
+                <p>
+                    Here's some music that matches your mood.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- RECOMMENDATION -->
+        <section>
+
+            <div class="section-title">
+                <div>
+                    <p class="small-title">
+                        MOODIFY PICKS
+                    </p>
+
+                    <h2>
+                        Recommended for you
+                    </h2>
+                </div>
+
+                <a href="home.html">
+                    Change mood
+                </a>
+            </div>
+
+
+            <!-- SONG CARDS -->
+            <div
+                id="songContainer"
+                class="song-container"
+            >
+                <!-- Javascript akan memasukkan lagu di sini -->
+            </div>
+
+        </section>
+
+
+        <!-- SONG DETAIL -->
+        <section
+            id="songDetail"
+            class="song-detail hidden"
+        >
+
+            <button
+                id="closeDetail"
+                class="back-button"
+            >
+                ← Back
+            </button>
+
+            <div class="detail-content">
+
+                <div
+                    id="detailCover"
+                    class="detail-cover"
+                >
+                    🎵
+                </div>
+
+                <div class="detail-info">
+
+                    <p class="small-title">
+                        NOW SELECTED
+                    </p>
+
+                    <h2 id="detailTitle">
+                        Song Title
+                    </h2>
+
+                    <h3 id="detailArtist">
+                        Artist
+                    </h3>
+
+                    <div class="tags">
+
+                        <span id="detailMood">
+                            Happy
+                        </span>
+
+                        <span id="detailGenre">
+                            Pop
+                        </span>
+
+                    </div>
+
+                    <p id="detailDescription">
+                        A song that matches your current mood.
+                    </p>
+
+                    <button
+                        id="playButton"
+                        class="play-button"
+                    >
+                        ▶ Play Song
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- YOUTUBE POPUP -->
+    <div
+        id="youtubeModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-background"></div>
+
+        <div class="youtube-popup">
+
+            <div class="popup-header">
+
+                <div>
+                    <span>▶</span>
+                    YouTube Player
+                </div>
+
+                <button id="closeModal">
+                    ✕
+                </button>
+
+            </div>
+
+
+            <div class="video-container">
+
+                <iframe
+                    id="youtubeFrame"
+                    src=""
+                    title="YouTube video player"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+                </iframe>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/recommendation.js"></script>
+
+</body>
+</html>

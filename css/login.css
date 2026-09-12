@@ -1,0 +1,134 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #eee;
+}
+
+
+/* =========================
+   MAIN SECTION
+========================= */
+
+.gradient-form {
+    min-height: 100vh;
+}
+
+
+/* =========================
+   MOODIFY LOGO
+========================= */
+
+.moodify-logo {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    margin-bottom: 5px;
+}
+
+
+/* =========================
+   GRADIENT
+========================= */
+
+.gradient-custom-2 {
+
+    /* fallback */
+    background: #fccb90;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(
+        to right,
+        #ee7724,
+        #d8363a,
+        #dd3675,
+        #b44593
+    );
+
+    /* W3C */
+    background: linear-gradient(
+        to right,
+        #ee7724,
+        #d8363a,
+        #dd3675,
+        #b44593
+    );
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.gradient-custom-2.btn {
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 12px;
+}
+
+.gradient-custom-2.btn:hover {
+    opacity: 0.9;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.form-control {
+    padding: 12px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #d8363a;
+}
+
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media (min-width: 768px) {
+
+    .gradient-form {
+        height: 100vh !important;
+    }
+
+}
+
+
+/* =========================
+   RIGHT CARD
+========================= */
+
+@media (min-width: 769px) {
+
+    .gradient-custom-2 {
+        border-top-right-radius: .3rem;
+        border-bottom-right-radius: .3rem;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .gradient-custom-2 {
+        display: none !important;
+    }
+
+    .card-body {
+        padding: 40px 25px !important;
+    }
+
+    .moodify-logo {
+        font-size: 34px;
+    }
+
+}
+
