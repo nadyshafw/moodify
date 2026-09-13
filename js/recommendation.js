@@ -1,76 +1,4 @@
 // =========================
-// DATA LAGU DUMMY
-// =========================
-
-const songs = [
-    {
-        id: 1,
-        title: "Good Days",
-        artist: "SZA",
-        mood: "happy",
-        genre: "Pop",
-        cover: "🌅",
-        description:
-            "A smooth song for a positive and relaxing mood.",
-        youtubeUrl:
-            "https://www.youtube.com/watch?v=cWrSjCZ5AeE"
-    },
-
-    {
-        id: 2,
-        title: "Sunflower",
-        artist: "Post Malone",
-        mood: "happy",
-        genre: "Pop",
-        cover: "🌻",
-        description:
-            "A bright and uplifting song for your day.",
-        youtubeUrl:
-            "https://www.youtube.com/watch?v=ApXoWvfEYVU"
-    },
-
-    {
-        id: 3,
-        title: "Lovely",
-        artist: "Billie Eilish",
-        mood: "sad",
-        genre: "Pop",
-        cover: "🌙",
-        description:
-            "A calm song for a more emotional mood.",
-        youtubeUrl:
-            "https://www.youtube.com/watch?v=V1Pl8CzNzCw"
-    },
-
-    {
-        id: 4,
-        title: "Evaluasi",
-        artist: "Hindia",
-        mood: "sad",
-        genre: "Indie",
-        cover: "🌄",
-        description:
-            "A reflective song from Hindia.",
-        youtubeUrl:
-            "https://www.youtube.com/watch?v=..."
-    },
-
-    {
-        id: 5,
-        title: "Better Together",
-        artist: "Jack Johnson",
-        mood: "relaxed",
-        genre: "Acoustic",
-        cover: "☀️",
-        description:
-            "A warm acoustic song for a relaxed mood.",
-        youtubeUrl:
-            "https://www.youtube.com/watch?v=u57d4_b_YgI"
-    }
-];
-
-
-// =========================
 // AMBIL MOOD USER
 // =========================
 
@@ -82,6 +10,7 @@ if (!selectedMood) {
 }
 
 selectedMood = selectedMood.toLowerCase();
+
 
 // =========================
 // ELEMENT HTML
@@ -122,6 +51,20 @@ const playButton =
 
 
 // =========================
+// YOUTUBE MODAL ELEMENT
+// =========================
+
+const youtubeModal =
+    document.getElementById("youtubeModal");
+
+const youtubeFrame =
+    document.getElementById("youtubeFrame");
+
+const closeModal =
+    document.getElementById("closeModal");
+
+
+// =========================
 // LAGU YANG DIPILIH
 // =========================
 
@@ -137,136 +80,202 @@ moodName.textContent =
 
 
 // =========================
-// FILTER LAGU
+// AMBIL DATA LAGU DARI JSON
 // =========================
 
-const recommendedSongs =
-    songs.filter(function(song) {
+fetch("../data/song.json")
 
-        return song.mood === selectedMood;
+    .then(function(response) {
+
+        if (!response.ok) {
+            throw new Error(
+                "Gagal mengambil songs.json"
+            );
+        }
+
+        return response.json();
+
+    })
+
+    .then(function(songs) {
+
+        // =========================
+        // FILTER LAGU BERDASARKAN MOOD
+        // =========================
+
+        const recommendedSongs =
+            songs.filter(function(song) {
+
+                return song.mood.toLowerCase()
+                    === selectedMood;
+
+            });
+
+
+        // =========================
+        // JIKA TIDAK ADA LAGU
+        // =========================
+
+        if (recommendedSongs.length === 0) {
+
+            songContainer.innerHTML = `
+                <p class="no-song">
+                    No songs found for this mood.
+                </p>
+            `;
+
+            return;
+        }
+
+
+        // =========================
+        // TAMPILKAN SONG CARD
+        // =========================
+
+        recommendedSongs.forEach(function(song) {
+
+            const card =
+                document.createElement("div");
+
+            card.classList.add("song-card");
+
+
+            card.innerHTML = `
+
+                <div class="song-cover">
+                    ${song.cover}
+                </div>
+
+                <div class="song-info">
+
+                    <h3>
+                        ${song.title}
+                    </h3>
+
+                    <p>
+                        ${song.artist}
+                    </p>
+
+                    <div class="song-actions">
+
+                        <button
+                            class="card-play"
+                            data-id="${song.id}"
+                        >
+                            ▶
+                        </button>
+
+                        <button
+                            class="card-detail"
+                            data-id="${song.id}"
+                        >
+                            View details →
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            songContainer.appendChild(card);
+
+        });
+
+
+        // =========================
+        // EVENT PLAY DARI CARD
+        // =========================
+
+        const playButtons =
+            document.querySelectorAll(".card-play");
+
+
+        playButtons.forEach(function(button) {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    const songId =
+                        Number(button.dataset.id);
+
+
+                    const song =
+                        songs.find(function(song) {
+
+                            return song.id === songId;
+
+                        });
+
+
+                    if (song) {
+                        openYouTube(song);
+                    }
+
+                }
+            );
+
+        });
+
+
+        // =========================
+        // EVENT DETAIL
+        // =========================
+
+        const detailButtons =
+            document.querySelectorAll(".card-detail");
+
+
+        detailButtons.forEach(function(button) {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    const songId =
+                        Number(button.dataset.id);
+
+
+                    selectedSong =
+                        songs.find(function(song) {
+
+                            return song.id === songId;
+
+                        });
+
+
+                    if (selectedSong) {
+
+                        showSongDetail(
+                            selectedSong
+                        );
+
+                    }
+
+                }
+            );
+
+        });
+
+    })
+
+    .catch(function(error) {
+
+        console.error(
+            "Error:",
+            error
+        );
+
+
+        songContainer.innerHTML = `
+            <p class="no-song">
+                Failed to load songs.
+            </p>
+        `;
 
     });
-
-
-// =========================
-// TAMPILKAN SONG CARD
-// =========================
-
-recommendedSongs.forEach(function(song) {
-
-    const card =
-        document.createElement("div");
-
-    card.classList.add("song-card");
-
-
-    card.innerHTML = `
-
-        <div class="song-cover">
-            ${song.cover}
-        </div>
-
-        <div class="song-info">
-
-            <h3>
-                ${song.title}
-            </h3>
-
-            <p>
-                ${song.artist}
-            </p>
-
-            <div class="song-actions">
-
-                <button
-                    class="card-play"
-                    data-id="${song.id}"
-                >
-                    ▶
-                </button>
-
-                <button
-                    class="card-detail"
-                    data-id="${song.id}"
-                >
-                    View details →
-                </button>
-
-            </div>
-
-        </div>
-
-    `;
-
-
-    songContainer.appendChild(card);
-
-});
-
-
-// =========================
-// EVENT PLAY DARI CARD
-// =========================
-
-const playButtons =
-    document.querySelectorAll(".card-play");
-
-
-playButtons.forEach(function(button) {
-
-    button.addEventListener(
-        "click",
-        function() {
-
-            const songId =
-                Number(button.dataset.id);
-
-            const song =
-                songs.find(function(song) {
-
-                    return song.id === songId;
-
-                });
-
-            openYouTube(song);
-
-        }
-    );
-
-});
-
-
-// =========================
-// EVENT DETAIL
-// =========================
-
-const detailButtons =
-    document.querySelectorAll(".card-detail");
-
-
-detailButtons.forEach(function(button) {
-
-    button.addEventListener(
-        "click",
-        function() {
-
-            const songId =
-                Number(button.dataset.id);
-
-            selectedSong =
-                songs.find(function(song) {
-
-                    return song.id === songId;
-
-                });
-
-
-            showSongDetail(selectedSong);
-
-        }
-    );
-
-});
 
 
 // =========================
@@ -337,20 +346,6 @@ closeDetail.addEventListener(
 
 
 // =========================
-// YOUTUBE MODAL
-// =========================
-
-const youtubeModal =
-    document.getElementById("youtubeModal");
-
-const youtubeFrame =
-    document.getElementById("youtubeFrame");
-
-const closeModal =
-    document.getElementById("closeModal");
-
-
-// =========================
 // OPEN YOUTUBE
 // =========================
 
@@ -371,7 +366,7 @@ function openYouTube(song) {
 
 
     youtubeFrame.src =
-         `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
+        `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
 
 
     youtubeModal.classList.remove("hidden");
@@ -408,6 +403,7 @@ document
 
             youtubeModal.classList.add("hidden");
 
+            // Stop video
             youtubeFrame.src = "";
 
         }
@@ -425,23 +421,29 @@ function getYouTubeId(url) {
     }
 
 
-    // Format:
-    // https://www.youtube.com/watch?v=XXXXXXXX
+    // =========================
+    // FORMAT:
+    // youtube.com/watch?v=XXXXXXXX
+    // =========================
 
     if (url.includes("watch?v=")) {
 
-        return url.split("watch?v=")[1]
+        return url
+            .split("watch?v=")[1]
             .split("&")[0];
 
     }
 
 
-    // Format:
-    // https://youtu.be/XXXXXXXX
+    // =========================
+    // FORMAT:
+    // youtu.be/XXXXXXXX
+    // =========================
 
     if (url.includes("youtu.be/")) {
 
-        return url.split("youtu.be/")[1]
+        return url
+            .split("youtu.be/")[1]
             .split("?")[0];
 
     }

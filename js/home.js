@@ -2,6 +2,7 @@ let current_user = JSON.parse(localStorage.getItem("currentUser"))
 document.getElementById("username").textContent = current_user.username;
 
 
+
 let moods = [
     "happy",
     "sad"
@@ -9,35 +10,36 @@ let moods = [
 
 let moodContainer = document.getElementById("moodContainer"); 
 
-for (let mood of moods){
+for (let mood of moods) {
+
     let card = document.createElement("div");
 
     card.classList.add("mood-card");
 
-    // warna background yg berbeda untuk mood yg berbeda
-    if (mood === "happy"){
-        card.classList.add("happy")
-    } else if (mood === "sad"){
-        card.classList.add("sad")
+    if (mood === "happy") {
+        card.classList.add("happy");
+    } else if (mood === "sad") {
+        card.classList.add("sad");
+    }
+
+    let emoji = "";
+
+    if (mood === "happy") {
+        emoji = "";
+    } else if (mood === "sad") {
+        emoji = "";
     }
 
     card.innerHTML = `
+        <div class="mood-emoji">${emoji}</div>
         <h2>${mood}</h2>
-        <button>Recommend Song</button>
     `;
 
-    let button = card.querySelector("button"); 
-    button.addEventListener("click", function() {
-        localStorage.setItem("selectedMood", mood)
-        window.location.href = "recommendation.html"
-    })
+    card.addEventListener("click", function() {
+        localStorage.setItem("selectedMood", mood);
+        window.location.href = "recommendation.html";
+    });
 
-    moodContainer.appendChild(card)
+    moodContainer.appendChild(card);
 }
 
-// user logout 
-document.getElementById("logout").addEventListener("click", function(){
-    localStorage.removeItem("currentUser"); 
-    alert("Anda telah mengakhiri sesi ini")
-    window.location.href = "login-regis.html"
-})

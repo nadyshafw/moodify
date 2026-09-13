@@ -253,33 +253,33 @@ body {
     background: linear-gradient(135deg, #FFD166, #FF9F1C);
 }
 
+.mood-card.happy::before {
+    content: "😊";
+    font-size: 80px;
+    margin-top: 20px;
+}
+
 .mood-card.sad {
     background: linear-gradient(135deg, #A8C8FF, #8E9FE6);
 }
 
-.mood-card:hover {
-    transform: translateY(-5px);
+.mood-card.sad::before {
+    content: "😔";
+    font-size: 80px;
+    margin-top: 20px;
+}
 
-    box-shadow:
-        0 10px 25px rgba(0, 0, 0, 0.1);
+.mood-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .mood-card h2 {
     margin-top: 20px ;
 }
 
-.mood-card button {
-    margin-top: 100px;
-    width: 120px;
-    height: 30px;
-    align-self: center;
-    color: #555;
-    border-radius: 20px;
-}
-
-.mood-card button:hover {
-    color: white;
-    background: #555
+.mood-card {
+    cursor: pointer;
 }
 
 /* # -> for id, . -> for class */
