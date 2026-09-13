@@ -2,45 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Moodify - Recommendation</title>
 
-    <link rel="stylesheet" href="css/recommendation.css">
+
+    <!-- NAVBAR CSS -->
+    <link
+        rel="stylesheet"
+        href="css/navbar.css"
+    >
+
+    <!-- RECOMMENDATION CSS -->
+    <link
+        rel="stylesheet"
+        href="css/recommendation.css"
+    >
+
 </head>
 
 <body>
 
     <!-- NAVBAR -->
-    <nav class="navbar">
 
-        <div class="logo">
-            
-            Moodify
-        </div>
+    <div id="navbar"></div>
 
-        <div class="nav-menu">
-            <a href="home.html">Home</a>
-            <a href="recommendation.html" class="active">
-                Recommendation
-            </a>
-
-            <div class="search-box">
-                🔍
-                <input
-                    type="text"
-                    placeholder="Search song..."
-                >
-            </div>
-
-            <div class="profile">
-                👤
-                <span>User</span>
-                ▼
-            </div>
-        </div>
-
-    </nav>
 
 
     <!-- MAIN -->
@@ -49,7 +39,9 @@
         <!-- MOOD HEADER -->
         <section class="mood-header">
 
-            <div class="mood-icon">
+            <div 
+            class="mood-icon"
+            >
                 😊
             </div>
 
@@ -59,7 +51,10 @@
                 </p>
 
                 <h1>
-                    Your mood: <span id="moodName">Happy</span>
+                    Your mood:
+                    <span id="moodName">
+                        Happy
+                    </span>
                 </h1>
 
                 <p>
@@ -141,7 +136,7 @@
 
                         <span id="detailMood">
                             Happy
-                        </span>
+                        </span
 
                         <span id="detailGenre">
                             Pop
@@ -167,7 +162,6 @@
         </section>
 
     </main>
-
 
     <!-- YOUTUBE POPUP -->
     <div
@@ -209,7 +203,7 @@
 
     </div>
 
-
+    <script src="js/navbar.js"></script>
     <script src="js/recommendation.js"></script>
 
 </body>
