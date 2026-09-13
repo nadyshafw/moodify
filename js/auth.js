@@ -112,7 +112,11 @@ document.getElementById("login").addEventListener("submit", function (event) {
 
     if (user) {
 
+        localStorage.setItem("currentUser", JSON.stringify(user)); 
         alert("Login berhasil! Selamat datang " + user.username);
+        window.location.href = "home.html"        
+
+
 
     } else {
 
