@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Moodify - Home Page</title>
+
+    <link rel="stylesheet" href="css/home.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="logo">
+            
+            Moodify
+        </div>
+
+        <div class="nav-menu">
+            <a href="home.html" class="active">Home</a>
+            <a href="recommendation.html">Recommendation</a>
+            <a href="favorit.html">Favorit</a>
+
+            <div class="search-box">
+                🔍
+                <input
+                    type="text"
+                    placeholder="Search song..."
+                >
+            </div>
+
+            <div class="profile">
+                👤
+                <span id="logout">Log out</span>
+            </div>
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN -->
+    <main class="container">
+
+        <!-- MOOD HEADER -->
+        <section class="mood-header">
+            <div class="mood-icon">
+                😊
+            </div>
+
+            <div>
+                <h1>
+                    How was your day, <span id="username"></span>?
+                </h1>
+
+                <p>
+                    Please choose your mood below to get recommendation song
+                </p>
+            </div>
+
+        </section>
+
+        <!-- MOOD LISTs -->
+        <section>
+            <div class="section-title">
+                <div>
+                    <p class="small-title">
+                        MOOD LISTS
+                    </p>
+
+                    <!-- list of mood  -->
+                    <div id = moodContainer class="mood-container">
+                        <!-- js show list of mood with button for each mood-->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    <script src="js/home.js"></script>
+
+</body>
+</html>
