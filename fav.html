@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Moodify - Recommendation</title>
+
+    <link rel="stylesheet" href="css/favorit.css">
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">
+            Moodify
+        </div>
+        <div class="nav-menu">
+            <a href="home.html">Home</a>
+            <a href="recommendation.html">
+                Recommendation
+            </a>
+            <a href="fav.html" class="active">Favorit</a>
+            <div class="search-box">
+                🔍
+                <input
+                    type="text"
+                    placeholder="Search song..."
+                >
+            </div>
+            <div class="profile">
+                👤
+                <span>User</span>
+                ▼
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <main class="container">
+
+        <!-- MOOD HEADER -->
+        <section class="hero-header">
+            <div class="heart-icon">
+                &#129505;
+            </div>
+
+            <div>
+                <h1>
+                    YOUR MUSIC <br>
+                    YOUR FAVORITES
+                </h1>
+                <p>
+                    All the songs you've loved saved in one place.
+                </p>
+            </div>
+        </section>
+
+
+        <!-- FAV SONGS -->
+        <div class="word">
+            <p>
+                FAVORITES SONGS :
+            </p>
+        </div>
+
+        <!-- SONG CARDS -->
+        <div id="songContaine" class="song-container">
+            <!-- Javascript akan memasukkan lagu di sini -->
+        </div>
+
+        <!-- SONG DETAIL -->
+    </main>
+
+        <!-- YOUTUBE POPUP -->
+
+    <script src="js/favorit.js"></script>
+</body>
+</html>
