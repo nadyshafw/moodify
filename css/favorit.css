@@ -1,0 +1,267 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f7fc;
+    color: #17182b;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    height: 70px;
+    background: #101426;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 60px;
+
+    color: white;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+.logo-icon {
+    color: #a875ff;
+    margin-right: 10px;
+    font-size: 28px;
+}
+
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+
+.nav-menu a {
+    color: #c9cad5;
+    text-decoration: none;
+
+    font-size: 14px;
+}
+
+
+.nav-menu a.active {
+    color: white;
+    border-bottom: 2px solid #8c5cf6;
+
+    padding-bottom: 6px;
+}
+
+
+/* SEARCH */
+
+.search-box {
+    width: 220px;
+    height: 38px;
+
+    border-radius: 20px;
+
+    background: #20263b;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 15px;
+
+    color: #aaa;
+}
+
+
+.search-box input {
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: white;
+
+    margin-left: 8px;
+}
+
+
+/* PROFILE */
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.container {
+    max-width: 1200px;
+
+    margin: 40px auto;
+
+    padding: 0 30px;
+}
+
+
+/* =========================
+   HERO HEADER
+========================= */
+
+.hero-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 25px;
+    border-radius: 18px;
+    background: linear-gradient(
+        135deg,
+        #fff0bd,
+        #e8dcff
+    );
+    margin-bottom: 45px;
+}
+
+.heart-icon {
+    background-color: white;
+    font-size: 60px;
+    width: 130px;
+    height: 80px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.hero-header h1 {
+    font-size: 23px;
+    margin-bottom: 8px;
+}
+
+.hero-header p {
+    color: #666;
+}
+
+
+/* =========================
+   FAV SONGS
+========================= */
+
+.word {
+    font-size: 12px;
+    color: #777;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+
+/* =========================
+   SONG CARDS
+========================= */
+
+/* =========================
+   SONG DETAIL
+========================= */
+
+/* =========================
+   MODAL
+========================= */
+
+/* =========================
+   UTILITY
+========================= */
+
+.hidden {
+    display: none;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        padding: 0 25px;
+    }
+
+    .nav-menu {
+        gap: 15px;
+    }
+
+    .search-box {
+        width: 150px;
+    }
+
+    .song-container {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .navbar {
+        padding: 0 15px;
+    }
+
+    .nav-menu a {
+        display: none;
+    }
+
+    .profile span {
+        display: none;
+    }
+
+    .search-box {
+        width: 140px;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .song-container {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-content {
+        flex-direction: column;
+    }
+
+    .detail-cover {
+        width: 220px;
+        height: 220px;
+    }
+
+    .detail-info h2 {
+        font-size: 28px;
+    }
+
+}
