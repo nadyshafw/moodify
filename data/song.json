@@ -1,0 +1,122 @@
+[
+    {
+        "id": 1,
+        "title": "Good Days",
+        "artist": "SZA",
+        "mood": "happy",
+        "genre": "Pop",
+        "cover": "🌅",
+        "description": "A smooth song for a positive and relaxing mood.",
+        "youtubeUrl": "https://www.youtube.com/watch?v=cWrSjCZ5AeE"
+    },
+    {
+        "id": 2,
+        "title": "Sunflower",
+        "artist": "Post Malone",
+        "mood": "happy",
+        "genre": "Pop",
+        "cover": "🌻",
+        "description": "A bright and uplifting song for your day.",
+        "youtubeUrl": "https://www.youtube.com/watch?v=ApXoWvfEYVU"
+    },
+    {
+        "id": 3,
+        "title": "Lovely",
+        "artist": "Billie Eilish",
+        "mood": "sad",
+        "genre": "Pop",
+        "cover": "🌙",
+        "description": "A calm song for a more emotional mood.",
+        "youtubeUrl": "https://www.youtube.com/watch?v=V1Pl8CzNzCw"
+    },
+    {
+        "id": 4,
+        "title": "Evaluasi",
+        "artist": "Hindia",
+        "mood": "sad",
+        "genre": "Indie",
+        "cover": "🌄",
+        "description": "A reflective song from Hindia.",
+        "youtubeUrl": "https://www.youtube.com/watch?v=..."
+    },
+    {
+        "id": 5,
+        "title": "Better Together",
+        "artist": "Jack Johnson",
+        "mood": "sad",
+        "genre": "Acoustic",
+        "cover": "☀️",
+        "description": "A warm acoustic song for a relaxed mood.",
+        "youtubeUrl": "https://www.youtube.com/watch?v=u57d4_b_YgI"
+    },
+    {
+        "id": 6,
+        "title": "As It Was",
+        "artist": "Harry Styles",
+        "mood": "happy",
+        "genre": "Pop",
+        "cover": "🌈",
+        "description": "A catchy pop song with a bright and uplifting feeling.",
+        "youtubeUrl": "https://www.youtube.com/watch?v=H5v3kku4y6Q"
+    },
+    {
+        "id": 7,
+        "title": "Cruel Summer",
+        "artist": "Taylor Swift",
+        "mood": "happy",
+        "genre": "Pop",
+        "cover": "☀️",
+        "description": "An energetic pop song that brings a fun summer vibe.",
+        "youtubeUrl": "https://www.youtube.com/watch?v=ic8j13piAhQ"
+    },
+    {
+        "id": 8,
+        "title": "Someone You Loved",
+        "artist": "Lewis Capaldi",
+        "mood": "sad",
+        "genre": "Pop",
+        "cover": "💔",
+        "description": "An emotional song about missing someone and dealing with loss.",
+        "youtubeUrl": "https://www.youtube.com/watch?v=zABLecsR5UE"
+    },
+    {
+        "id": 9,
+        "title": "The Night We Met",
+        "artist": "Lord Huron",
+        "mood": "sad",
+        "genre": "Indie",
+        "cover": "🌌",
+        "description": "A nostalgic and emotional song for quiet moments.",
+        "youtubeUrl": "https://www.youtube.com/watch?v=KtlgYxa6BMU"
+    },
+    {
+        "id": 10,
+        "title": "About You",
+        "artist": "The 1975",
+        "mood": "sad",
+        "genre": "Indie",
+        "cover": "🌃",
+        "description": "A dreamy and melancholic song about memories and feelings.",
+        "youtubeUrl": "https://www.youtube.com/watch?v=tGv7CUutzqU"
+    },
+    {
+        "id": 11,
+        "title": "I Ain't Worried",
+        "artist": "OneRepublic",
+        "mood": "happy",
+        "genre": "Pop",
+        "cover": "🏖️",
+        "description": "A fun and carefree song for a positive mood.",
+        "youtubeUrl": "https://www.youtube.com/watch?v=mNEUkkoUoIA"
+    },
+    {
+        "id": 12,
+        "title": "Here With Me",
+        "artist": "d4vd",
+        "mood": "sad",
+        "genre": "Alternative",
+        "cover": "🌧️",
+        "description": "A soft and emotional song with a nostalgic atmosphere.",
+        "youtubeUrl": "https://www.youtube.com/watch?v=Ip6cw8gfHHI"
+    }
+]
