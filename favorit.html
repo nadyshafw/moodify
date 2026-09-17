@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Moodify - Recommendation</title>
+    <title>Moodify - Favorite</title>
 
     <link rel="stylesheet" href="css/favorit.css">
 </head>
@@ -42,14 +42,59 @@
         </div>
 
         <!-- SONG CARDS -->
-        <div id="songContaine" class="song-container">
+        <div id="songContainer" class="song-container">
             <!-- Javascript akan memasukkan lagu di sini -->
         </div>
 
         <!-- SONG DETAIL -->
+        <section id="songDetail" class="song-detail hidden">
+            <button id="closeDetail" class="back-button">
+                ← Back
+            </button>
+
+            <div class="detail-content">
+                <div id="detailCover" class="detail-cover">
+                </div>
+                <div class="detail-info">
+                    <small>NOW SELECTED</small>
+                    <h2 id="detailTitle"></h2>
+                    <h3 id="detailArtist"></h3>
+                    <div class="tags">
+                        <span id="detailMood"></span>
+                        <span id="detailGenre"></span>
+                    </div>
+                    <p id="detailDescription"></p>
+                    <button id="playButton" class="play-button">
+                        ▶ Play Song
+                    </button>
+                </div>
+            </div>
+        </section>
     </main>
 
         <!-- YOUTUBE POPUP -->
+        <div id="youtubeModal" class="modal hidden">
+            <div class="modal-background">
+            </div>
+                <div class="youtube-popup">
+                    
+                    <div class="popup-header">
+                        <span>Now Playing</span>
+                        <button id="closeModal">
+                            ✕
+                        </button>
+                    </div>
+
+                    <div class="video-container">
+                        <iframe
+                            id="youtubeFrame"
+                            allow="autoplay; encrypted-media; picture-in-picture"
+                            allowfullscreen
+                            referrerpolicy="strict-origin-when-cross-origin">
+                        </iframe>
+                    </div>
+                </div>    
+        </div>
 
     <script src="js/favorit.js"></script>
     <script src="js/navbar.js"></script>
