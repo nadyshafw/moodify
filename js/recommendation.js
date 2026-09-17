@@ -83,7 +83,7 @@ moodName.textContent =
 // AMBIL DATA LAGU DARI JSON
 // =========================
 
-fetch("../data/song.json")
+fetch("data/song.json")
 
     .then(function(response) {
 
