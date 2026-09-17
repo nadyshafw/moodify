@@ -143,46 +143,208 @@ fetch("../data/song.json")
             card.innerHTML = `
 
                 <div class="song-cover">
-                    ${song.cover}
-                </div>
+        ${song.cover}
+    </div>
 
-                <div class="song-info">
+    <div class="song-info">
 
-                    <h3>
-                        ${song.title}
-                    </h3>
+        <div class="song-title-row">
 
-                    <p>
-                        ${song.artist}
-                    </p>
+            <h3>
+                ${song.title}
+            </h3>
 
-                    <div class="song-actions">
+            <button
+                class="favorite-button"
+                data-id="${song.id}"
+            >
+                ♡
+            </button>
 
-                        <button
-                            class="card-play"
-                            data-id="${song.id}"
-                        >
-                            ▶
-                        </button>
+        </div>
 
-                        <button
-                            class="card-detail"
-                            data-id="${song.id}"
-                        >
-                            View details →
-                        </button>
+        <p>
+            ${song.artist}
+        </p>
 
-                    </div>
+        <div class="song-actions">
 
-                </div>
+            <button
+                class="card-play"
+                data-id="${song.id}"
+            >
+                ▶
+            </button>
 
-            `;
+            <button
+                class="card-detail"
+                data-id="${song.id}"
+            >
+                View details →
+            </button>
 
+        </div>
 
-            songContainer.appendChild(card);
+    </div>
+
+`;
+        songContainer.appendChild(card);
 
         });
 
+        // =========================
+        // EVENT FAVORITE
+        // =========================
+
+        const favoriteButtons =
+            document.querySelectorAll(".favorite-button");
+
+
+        favoriteButtons.forEach(function(button) {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    const songId =
+                        Number(button.dataset.id);
+
+
+                    const song =
+                        songs.find(function(song) {
+
+                            return song.id === songId;
+
+                        });
+
+
+                    if (song) {
+
+                        toggleFavorite(
+                            song,
+                            button
+                        );
+
+                    }
+
+                }
+            );
+
+        });
+
+            // =========================
+            // TOGGLE FAVORITE
+            // =========================
+
+            function toggleFavorite(song, button) {
+
+                let favorites =
+                    JSON.parse(
+                        localStorage.getItem("favorites")
+                    ) || [];
+
+
+                const existingSong =
+                    favorites.find(function(favorite) {
+
+                        return favorite.id === song.id;
+
+                    });
+
+
+                // =========================
+                // JIKA SUDAH FAVORITE
+                // =========================
+
+                if (existingSong) {
+
+                    let newFavorites = [];
+
+                    for (const favorite of favorites) {
+
+                        if (favorite.id !== song.id) {
+
+                            newFavorites.push(favorite);
+
+                        }
+
+                    }
+
+                    favorites = newFavorites;
+
+                    button.textContent = "♡";
+
+                }
+
+                // =========================
+                // JIKA BELUM FAVORITE
+                // =========================
+
+                else {
+
+                    favorites.push(song);
+
+                    button.textContent = "♥";
+
+                }
+
+
+                // =========================
+                // SIMPAN KE LOCAL STORAGE
+                // =========================
+
+                localStorage.setItem(
+                    "favorites",
+                    JSON.stringify(favorites)
+                );
+
+            }
+
+        // =========================
+        // CEK FAVORITE
+        // =========================
+
+        function updateFavoriteButtons() {
+
+            let favorites =
+                JSON.parse(
+                    localStorage.getItem("favorites")
+                ) || [];
+
+
+            const favoriteButtons =
+                document.querySelectorAll(
+                    ".favorite-button"
+                );
+
+
+            favoriteButtons.forEach(function(button) {
+
+                const songId =
+                    Number(button.dataset.id);
+
+
+                const isFavorite =
+                    favorites.some(function(song) {
+
+                        return song.id === songId;
+
+                    });
+
+
+                if (isFavorite) {
+
+                    button.textContent = "♥";
+
+                } else {
+
+                    button.textContent = "♡";
+
+                }
+
+            });
+
+        }
 
         // =========================
         // EVENT PLAY DARI CARD
