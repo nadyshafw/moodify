@@ -1,11 +1,14 @@
-fetch("components/navbar.html")
-    .then(function(response) {
-        return response.text();
-    })
+const xhr = new XMLHttpRequest();
 
-    .then(function(data) {
+xhr.open("GET", "components/navbar.html");
 
-        document.getElementById("navbar").innerHTML = data;
+xhr.onload = function() {
+
+    if (xhr.status === 200) {
+
+        document.getElementById("navbar").innerHTML =
+            xhr.responseText;
+
 
 
         // LOGOUT
@@ -22,4 +25,15 @@ fetch("components/navbar.html")
 
             });
 
-    });
+    }};
+
+xhr.onerror = function() {
+
+    console.error(
+        "Gagal mengambil navbar"
+    );
+
+};
+
+
+xhr.send();    
