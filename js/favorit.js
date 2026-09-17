@@ -1,19 +1,18 @@
-let favoriteSongs = JSON.parse(localStorage.getItem("favoritSongs"))
-// NAMA KEY Local Storage = "favoritSongs"
+let favoriteSongs = JSON.parse(localStorage.getItem("favorites"))
+// NAMA KEY Local Storage = "favorites"
 
 if(!favoriteSongs) {
     favoriteSongs = []
 }
 
-// data = SEMUA lagu
-// favoriteSongs = ID lagu yang difavoritkan
+// favoriteSongs = data lagu yang sudah difavoritkan
+
+// CARD SONGS
 let songContainer = document.getElementById("songContainer")
 fetch("../data/song.json") 
 .then(Response => Response.json())
 .then(data => {
-    let favorite = data.filter( song => 
-        favoriteSongs.includes(song.id)
-    )
+    let favorite = favoriteSongs
     favorite.forEach(song => {
         let card = document.createElement("div")
         card.className = "song-card"
@@ -24,7 +23,17 @@ fetch("../data/song.json")
             </div>
 
             <div class="song-info">
-                <h3>${song.title}</h3>
+                <div class="song-title-row">
+                    <h3>${song.title}</h3>
+                    
+                    <button
+                        class="card-delete"
+                        data-id="${song.id}"
+                    >
+                        🗑️
+                    </button>
+                </div>
+
                 <p>${song.artist}</p>
 
                 <div class="song-actions">
@@ -34,13 +43,6 @@ fetch("../data/song.json")
                     >
                         ▶
                     </button>
-                    
-                    <button
-                        class="card-delete"
-                        data-id="${song.id}"
-                    >
-                        🗑️
-                    </button>
 
                     <button
                         class="card-detail"
@@ -48,8 +50,6 @@ fetch("../data/song.json")
                     >
                         View details →
                     </button>
-
-                    
                 </div>
             </div>
             
@@ -84,11 +84,11 @@ fetch("../data/song.json")
         button.addEventListener("click", function() {
             const songId = Number(button.dataset.id)
 
-            favoriteSongs = favoriteSongs.filter(function(id) {
-                return id !== songId
+            favoriteSongs = favoriteSongs.filter(function(song) {
+                return song.id !== songId
             })
 
-            localStorage.setItem("favoritSongs", JSON.stringify(favoriteSongs))
+            localStorage.setItem("favorites", JSON.stringify(favoriteSongs))
 
             button.closest(".song-card").remove()
         }) 
@@ -135,8 +135,8 @@ fetch("../data/song.json")
             openYouTube(song)
         }
     })
-
 })
+
 
 // OPEN YTB
 function openYouTube(song) {

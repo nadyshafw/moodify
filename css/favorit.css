@@ -251,7 +251,7 @@ body {
     color: #7651e8;
     cursor: pointer;
     font-size: 13px;
-    margin-left: 55px;
+    margin-left: 96px;
 }
 
 .card-delete {
@@ -259,6 +259,12 @@ body {
     background: transparent;
     cursor: pointer;
     font-size: 16px;
+}
+
+.song-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* =========================
