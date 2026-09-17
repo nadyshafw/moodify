@@ -80,31 +80,50 @@ moodName.textContent =
 
 
 // =========================
-// AMBIL DATA LAGU DARI JSON
+// AMBIL DATA LAGU
 // =========================
 
-fetch("data/song.json")
+const songXHR = new XMLHttpRequest();
 
-    .then(function(response) {
+songXHR.open("GET", "data/song.json", true);
 
-        if (!response.ok) {
-            throw new Error(
-                "Gagal mengambil songs.json"
+songXHR.onload = function () {
+
+    console.log("Status:", songXHR.status);
+    console.log("Response:", songXHR.responseText);
+
+    if (songXHR.status === 200) {
+
+        let songs;
+
+        try {
+
+            songs =
+                JSON.parse(songXHR.responseText);
+
+        } catch (error) {
+
+            console.error(
+                "JSON tidak valid:",
+                error
             );
+
+            songContainer.innerHTML = `
+                <p class="no-song">
+                    Data lagu tidak valid.
+                </p>
+            `;
+
+            return;
         }
 
-        return response.json();
-
-    })
-
-    .then(function(songs) {
 
         // =========================
         // FILTER LAGU BERDASARKAN MOOD
         // =========================
 
         const recommendedSongs =
-            songs.filter(function(song) {
+            songs.filter(function (song) {
 
                 return song.mood.toLowerCase()
                     === selectedMood;
@@ -132,7 +151,7 @@ fetch("data/song.json")
         // TAMPILKAN SONG CARD
         // =========================
 
-        recommendedSongs.forEach(function(song) {
+        recommendedSongs.forEach(function (song) {
 
             const card =
                 document.createElement("div");
@@ -143,80 +162,81 @@ fetch("data/song.json")
             card.innerHTML = `
 
                 <div class="song-cover">
-        ${song.cover}
-    </div>
+                    ${song.cover}
+                </div>
 
-    <div class="song-info">
+                <div class="song-info">
 
-        <div class="song-title-row">
+                    <div class="song-title-row">
 
-            <h3>
-                ${song.title}
-            </h3>
+                        <h3>
+                            ${song.title}
+                        </h3>
 
-            <button
-                class="favorite-button"
-                data-id="${song.id}"
-            >
-                ♡
-            </button>
+                        <button
+                            class="favorite-button"
+                            data-id="${song.id}"
+                        >
+                            ♡
+                        </button>
 
-        </div>
+                    </div>
 
-        <p>
-            ${song.artist}
-        </p>
+                    <p>
+                        ${song.artist}
+                    </p>
 
-        <div class="song-actions">
+                    <div class="song-actions">
 
-            <button
-                class="card-play"
-                data-id="${song.id}"
-            >
-                ▶
-            </button>
+                        <button
+                            class="card-play"
+                            data-id="${song.id}"
+                        >
+                            ▶
+                        </button>
 
-            <button
-                class="card-detail"
-                data-id="${song.id}"
-            >
-                View details →
-            </button>
+                        <button
+                            class="card-detail"
+                            data-id="${song.id}"
+                        >
+                            View details →
+                        </button>
 
-        </div>
+                    </div>
 
-    </div>
+                </div>
 
-`;
-        songContainer.appendChild(card);
+            `;
+
+            songContainer.appendChild(card);
 
         });
+
 
         // =========================
         // EVENT FAVORITE
         // =========================
 
         const favoriteButtons =
-            document.querySelectorAll(".favorite-button");
+            document.querySelectorAll(
+                ".favorite-button"
+            );
 
-
-        favoriteButtons.forEach(function(button) {
+        favoriteButtons.forEach(function (button) {
 
             button.addEventListener(
                 "click",
-                function() {
+                function () {
 
                     const songId =
                         Number(button.dataset.id);
 
-
                     const song =
-                        songs.find(function(song) {
+                        songs.find(function (song) {
 
                             return song.id === songId;
 
                         });
-
 
                     if (song) {
 
@@ -232,73 +252,61 @@ fetch("data/song.json")
 
         });
 
-            // =========================
-            // TOGGLE FAVORITE
-            // =========================
 
-            function toggleFavorite(song, button) {
+        // =========================
+        // TOGGLE FAVORITE
+        // =========================
 
-                let favorites =
-                    JSON.parse(
-                        localStorage.getItem("favorites")
-                    ) || [];
+        function toggleFavorite(song, button) {
 
-
-                const existingSong =
-                    favorites.find(function(favorite) {
-
-                        return favorite.id === song.id;
-
-                    });
+            let favorites =
+                JSON.parse(
+                    localStorage.getItem("favorites")
+                ) || [];
 
 
-                // =========================
-                // JIKA SUDAH FAVORITE
-                // =========================
+            const existingSong =
+                favorites.find(function (favorite) {
 
-                if (existingSong) {
+                    return favorite.id === song.id;
 
-                    let newFavorites = [];
+                });
 
-                    for (const favorite of favorites) {
 
-                        if (favorite.id !== song.id) {
+            if (existingSong) {
 
-                            newFavorites.push(favorite);
+                let newFavorites = [];
 
-                        }
+                for (const favorite of favorites) {
+
+                    if (favorite.id !== song.id) {
+
+                        newFavorites.push(favorite);
 
                     }
 
-                    favorites = newFavorites;
-
-                    button.textContent = "♡";
-
                 }
 
-                // =========================
-                // JIKA BELUM FAVORITE
-                // =========================
+                favorites = newFavorites;
 
-                else {
+                button.textContent = "♡";
 
-                    favorites.push(song);
+            } else {
 
-                    button.textContent = "♥";
+                favorites.push(song);
 
-                }
-
-
-                // =========================
-                // SIMPAN KE LOCAL STORAGE
-                // =========================
-
-                localStorage.setItem(
-                    "favorites",
-                    JSON.stringify(favorites)
-                );
+                button.textContent = "♥";
 
             }
+
+
+            localStorage.setItem(
+                "favorites",
+                JSON.stringify(favorites)
+            );
+
+        }
+
 
         // =========================
         // CEK FAVORITE
@@ -318,14 +326,14 @@ fetch("data/song.json")
                 );
 
 
-            favoriteButtons.forEach(function(button) {
+            favoriteButtons.forEach(function (button) {
 
                 const songId =
                     Number(button.dataset.id);
 
 
                 const isFavorite =
-                    favorites.some(function(song) {
+                    favorites.some(function (song) {
 
                         return song.id === songId;
 
@@ -346,26 +354,29 @@ fetch("data/song.json")
 
         }
 
+        updateFavoriteButtons();
+
+
         // =========================
-        // EVENT PLAY DARI CARD
+        // EVENT PLAY
         // =========================
 
         const playButtons =
             document.querySelectorAll(".card-play");
 
 
-        playButtons.forEach(function(button) {
+        playButtons.forEach(function (button) {
 
             button.addEventListener(
                 "click",
-                function() {
+                function () {
 
                     const songId =
                         Number(button.dataset.id);
 
 
                     const song =
-                        songs.find(function(song) {
+                        songs.find(function (song) {
 
                             return song.id === songId;
 
@@ -373,7 +384,9 @@ fetch("data/song.json")
 
 
                     if (song) {
+
                         openYouTube(song);
+
                     }
 
                 }
@@ -390,18 +403,18 @@ fetch("data/song.json")
             document.querySelectorAll(".card-detail");
 
 
-        detailButtons.forEach(function(button) {
+        detailButtons.forEach(function (button) {
 
             button.addEventListener(
                 "click",
-                function() {
+                function () {
 
                     const songId =
                         Number(button.dataset.id);
 
 
                     selectedSong =
-                        songs.find(function(song) {
+                        songs.find(function (song) {
 
                             return song.id === songId;
 
@@ -421,15 +434,12 @@ fetch("data/song.json")
 
         });
 
-    })
-
-    .catch(function(error) {
+    } else {
 
         console.error(
-            "Error:",
-            error
+            "Gagal mengambil song.json. Status:",
+            songXHR.status
         );
-
 
         songContainer.innerHTML = `
             <p class="no-song">
@@ -437,7 +447,32 @@ fetch("data/song.json")
             </p>
         `;
 
-    });
+    }
+
+};
+
+
+// =========================
+// ERROR REQUEST
+// =========================
+
+songXHR.onerror = function () {
+
+    console.error(
+        "XMLHttpRequest gagal."
+    );
+
+    songContainer.innerHTML = `
+        <p class="no-song">
+            Failed to load songs.
+        </p>
+    `;
+
+};
+
+
+// Jalankan request
+songXHR.send();
 
 
 // =========================
@@ -481,7 +516,7 @@ function showSongDetail(song) {
 
 playButton.addEventListener(
     "click",
-    function() {
+    function () {
 
         if (!selectedSong) {
             return;
@@ -499,7 +534,7 @@ playButton.addEventListener(
 
 closeDetail.addEventListener(
     "click",
-    function() {
+    function () {
 
         songDetail.classList.add("hidden");
 
@@ -542,11 +577,10 @@ function openYouTube(song) {
 
 closeModal.addEventListener(
     "click",
-    function() {
+    function () {
 
         youtubeModal.classList.add("hidden");
 
-        // Stop video ketika popup ditutup
         youtubeFrame.src = "";
 
     }
@@ -561,11 +595,10 @@ document
     .querySelector(".modal-background")
     .addEventListener(
         "click",
-        function() {
+        function () {
 
             youtubeModal.classList.add("hidden");
 
-            // Stop video
             youtubeFrame.src = "";
 
         }
@@ -583,11 +616,6 @@ function getYouTubeId(url) {
     }
 
 
-    // =========================
-    // FORMAT:
-    // youtube.com/watch?v=XXXXXXXX
-    // =========================
-
     if (url.includes("watch?v=")) {
 
         return url
@@ -596,11 +624,6 @@ function getYouTubeId(url) {
 
     }
 
-
-    // =========================
-    // FORMAT:
-    // youtu.be/XXXXXXXX
-    // =========================
 
     if (url.includes("youtu.be/")) {
 
