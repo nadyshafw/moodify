@@ -177,18 +177,176 @@ body {
     margin-bottom: 8px;
 }
 
-
 /* =========================
    SONG CARDS
 ========================= */
 
-/* =========================
-   SONG DETAIL
-========================= */
+.song-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    margin-top: 20px;
+}
+
+.song-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+    transition: 0.2s;
+}
+
+.song-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.song-cover {
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 65px;
+    background: linear-gradient(
+        135deg,
+        #8c67f5,
+        #d4b8ff
+    );
+}
+
+.song-info {
+    padding: 18px;
+}
+
+.song-info h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.song-info p {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.song-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-play {
+    border: none;
+    background: #7651e8;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.card-detail {
+    border: none;
+    background: transparent;
+    color: #7651e8;
+    cursor: pointer;
+    font-size: 13px;
+    margin-left: 55px;
+}
+
+.card-delete {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+}
 
 /* =========================
-   MODAL
+   VIEW DETAILS
 ========================= */
+
+.song-detail {
+    margin-top: 50px;
+    background: #111629;
+    color: white;
+    padding: 35px;
+    border-radius: 20px;
+}
+
+.back-button {
+    background: transparent;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.detail-content {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.detail-cover {
+    width: 300px;
+    height: 300px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 100px;
+    background: linear-gradient(135deg, #7651e8, #e3b8ff);
+}
+
+.detail-info {
+    max-width: 500px;
+}
+
+.detail-info h2 {
+    font-size: 40px;
+    margin-bottom: 8px;
+}
+
+.detail-info h3 {
+    color: #bbb;
+    margin-bottom: 20px;
+}
+
+.tags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tags span {
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #2b3046;
+    color: #ccc;
+    font-size: 12px;
+}
+
+.detail-info p {
+    color: #bbb;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.play-button {
+    border: none;
+    background: #8b5cf6;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
 
 /* =========================
    UTILITY
@@ -198,70 +356,118 @@ body {
     display: none;
 }
 
-
 /* =========================
    RESPONSIVE
 ========================= */
 
 @media (max-width: 900px) {
-
     .navbar {
         padding: 0 25px;
     }
-
     .nav-menu {
         gap: 15px;
     }
-
     .search-box {
         width: 150px;
     }
-
     .song-container {
         grid-template-columns:
             repeat(2, 1fr);
     }
-
 }
 
 
 @media (max-width: 600px) {
-
     .navbar {
         padding: 0 15px;
     }
-
     .nav-menu a {
         display: none;
     }
-
     .profile span {
         display: none;
     }
-
     .search-box {
         width: 140px;
     }
-
     .container {
         padding: 0 15px;
     }
-
     .song-container {
         grid-template-columns: 1fr;
     }
-
     .detail-content {
         flex-direction: column;
     }
-
     .detail-cover {
         width: 220px;
         height: 220px;
     }
-
     .detail-info h2 {
         font-size: 28px;
     }
+}
 
+/* =========================
+   VIEW DETAILS
+========================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-background {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.youtube-popup {
+    position: relative;
+    width: 800px;
+    max-width: 90%;
+    background: #101426;
+    border-radius: 15px;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.popup-header {
+    height: 55px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+.popup-header button {
+    border: none;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+}
+
+.video-container iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.hidden {
+    display: none;
 }
