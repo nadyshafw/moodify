@@ -575,6 +575,41 @@ body {
     display: none;
 }
 
+/* =========================
+   SONG TITLE + FAVORITE
+========================= */
+
+.song-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.song-title-row h3 {
+    margin: 0;
+}
+
+
+/* =========================
+   FAVORITE BUTTON
+========================= */
+
+.favorite-button {
+    border: none;
+    background: none;
+    padding: 0;
+
+    font-size: 22px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+}
 
 /* =========================
    RESPONSIVE

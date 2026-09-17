@@ -2,10 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Moodify</title>
 </head>
+
 <body>
-    
+
+    <script>
+        const currentUser =
+            localStorage.getItem("currentUser");
+
+        if (currentUser) {
+
+            window.location.href = "home.html";
+
+        } else {
+
+            window.location.href = "login-regis.html";
+
+        }
+    </script>
+
 </body>
 </html>
